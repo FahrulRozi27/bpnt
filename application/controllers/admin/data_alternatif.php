@@ -20,12 +20,11 @@ class Data_alternatif extends CI_Controller
 
     public function tambah_aksi()
     {
-        
+
         $kode  = $this->model_alternatif->get_last_id('kode', 'tb_alternatif');
         /* var_dump($kode); 
         die; */
-        if ($kode) 
-        {
+        if ($kode) {
             $nilai_kode = substr($kode['kode'], 1);
             $kode = (int) $nilai_kode;
             $kode = $kode + 1;
@@ -37,7 +36,7 @@ class Data_alternatif extends CI_Controller
         $nama       = $this->input->post('nama');
         $jk         = $this->input->post('jk');
         $alamat     = $this->input->post('alamat');
-        
+
         $foto      = $_FILES['foto']['name'];
         if ($foto = '') {
         } else {
@@ -131,16 +130,6 @@ class Data_alternatif extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('admin/detail_alternatif', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function search()
-    {
-        $keyword = $this->input->post('keyword');
-        $data['alternatif'] = $this->model_alternatif->get_keyword($keyword);
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('admin/data_alternatif', $data);
         $this->load->view('templates/footer');
     }
 }

@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Data Alternatif</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Alternatif</h1>
     </div>
 
     <button class="btn btn-sm btn-primary mb-3" data-toggle="modal" data-target="#tambah_alternatif">
@@ -33,16 +33,16 @@
                     <td><?php echo $a->alamat ?></td>
 
                     <!-- <td>
-                    <img style="width:60px;" src="<?php echo base_url('uploads/'.$a->foto)?>" alt=""></td> -->
-                    <td><?php echo anchor
-                    (
-                            'admin/data_alternatif/detail/' . $a->kode,
-                            '<div class="btn btn-primary btn-sm">Detail</div>'
-                    ) ?>
-                    
-                    <a href="<?= base_url('admin/data_alternatif/Hapus/' . $a->kode) ?>">
-                    <button class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan dihapus?')">
-                    <i class="fas fa-trash"></i></button></a>
+                    <img style="width:60px;" src="<?php echo base_url('uploads/' . $a->foto) ?>" alt=""></td> -->
+                    <td>
+                        <a href="<?= base_url('admin/data_alternatif/detail/') . $a->kode ?>">
+                            <div class="btn btn-primary btn-sm">Detail</div>
+                        </a>
+                        <a href="<?= base_url('admin/data_alternatif/Hapus/' . $a->kode) ?>">
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin akan dihapus?')">
+                                Hapus
+                            </button>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -60,8 +60,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url() . 'admin/data_alternatif/tambah_aksi'; ?>" method="post" enctype="multipart/form-data"
-                autocomplete="off">
+                <form action="<?php echo base_url() . 'admin/data_alternatif/tambah_aksi'; ?>" method="post" enctype="multipart/form-data" autocomplete="off">
 
                     <div class="form-grup">
                         <label>NIK</label>

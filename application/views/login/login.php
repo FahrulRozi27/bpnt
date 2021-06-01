@@ -133,7 +133,7 @@
                 title: title,
                 text: msg,
                 timer: 1500,
-                footer: 'PPKS Karawang',
+                footer: 'BPNT KEDUNGWARINGIN',
                 showCancelButton: false,
                 showConfirmButton: false
             })
@@ -145,7 +145,7 @@
                 title: title,
                 text: msg,
                 timer: 1500,
-                footer: 'PPKS Karawang',
+                footer: 'BPNT KEDUNGWARINGIN',
                 showCancelButton: false,
                 showConfirmButton: false
             }).then(function() {
@@ -158,7 +158,7 @@
                 icon: 'error',
                 title: title,
                 text: msg,
-                footer: 'PPKS Karawang'
+                footer: 'BPNT KEDUNGWARINGIN'
             })
         }
     </script>

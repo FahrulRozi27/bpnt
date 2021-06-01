@@ -6,11 +6,14 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('DataHandle', 'dataHandle');
 	}
 	public function index()
 	{
-		echo password_hash('1', PASSWORD_DEFAULT);
-		die;
+		if ($this->session->username) {
+			redirect(base_url() . 'admin/dashboard');
+		}
+
 		$data['judul'] = 'BPNT Kedungwaringin';
 		$this->load->view('login/login', $data);
 	}
@@ -25,27 +28,24 @@ class Auth extends CI_Controller
 		// cek user
 		if ($user->num_rows() > 0) {
 			$data = $user->row_array();
-			if ($data['status'] == 1) {
-				if (password_verify($password, $data['password'])) {
-					if ($data['role'] == 4) {
-						$this->session->set_userdata(['id' => $data['id']]);
-						$this->session->set_userdata(['username' => $data['username']]);
-						$this->session->set_userdata(['nama' => $data['nama']]);
-						$this->session->set_userdata(['role' => $data['role']]);
-						$res['status'] = 1;
-						$res['url'] = 'dashboard';
-						$res['msg'] = 'Data ditemukan : ' . $data['nama'];
-					} else {
-						$res['status'] = 0;
-						$res['msg'] = 'Harap cek kembali username dan password';
-					}
+			// cek password
+			if (password_verify($password, $data['password'])) {
+				// cek role
+				if ($data['role_id'] == 1) {
+					$this->session->set_userdata(['username' => $data['username']]);
+					$this->session->set_userdata(['nama' => $data['nama_lengkap']]);
+					$this->session->set_userdata(['foto' => $data['foto']]);
+					$this->session->set_userdata(['role' => $data['role_id']]);
+					$res['status'] = 1;
+					$res['url'] = 'admin/Dashboard';
+					$res['msg'] = 'Data ditemukan : ' . $data['nama_lengkap'];
 				} else {
 					$res['status'] = 0;
 					$res['msg'] = 'Harap cek kembali username dan password';
 				}
 			} else {
 				$res['status'] = 0;
-				$res['msg'] = 'Akun dinonaktifkan. Silahkan hubungi admin DINSOS';
+				$res['msg'] = 'Harap cek kembali username dan password';
 			}
 		} else {
 			$res['status'] = 0;
@@ -53,5 +53,13 @@ class Auth extends CI_Controller
 		}
 
 		echo json_encode($res);
+	}
+
+	function logout()
+	{
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('nama');
+		$this->session->unset_userdata('role');
+		redirect('Auth');
 	}
 }
