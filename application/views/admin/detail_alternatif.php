@@ -1,5 +1,11 @@
 <div class="container-fluid">
 
+    <style>
+        .card-header {
+            background-color: #00923F !important;
+            color: white !important;
+        }
+    </style>
     <!-- cardbootstrap -->
     <div class="card">
         <h5 class="card-header">Detail Alternatif</h5>
@@ -45,10 +51,12 @@
                         <?php echo anchor('admin/data_alternatif', '
                         <div class="btn btn-sm btn-danger">Kembali</div>') ?>
 
-                        <?php echo anchor('admin/data_alternatif/edit/' . $a->kode, 
-                        '<div class="btn btn-sm btn-primary">Edit</div>') ?>
+                        <?php echo anchor(
+                            'admin/data_alternatif/edit/' . $a->kode,
+                            '<div class="btn btn-sm btn-primary">Edit</div>'
+                        ) ?>
 
-                        
+
                     </div>
 
                 </div>
